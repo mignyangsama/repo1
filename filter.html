@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="application/javascript">
+    var arr = [1,2,3,4,5,6,45];
+    var sama1 = arr.filter(function (value) {
+        return value > 3;
+    });
+
+    Array.prototype.filters = function (fn) {
+        var len = this.length;
+        if (typeof fn != "function"){
+            //如果不是函数返回一个类型错误
+            throw new TypeError('is not a function');
+        }
+        var res = [];
+        var context = arguments[0];
+        for (var  i = 0; i < len; i++){
+            if (this[i]){
+                let value = this[i];
+                if (fn.call(context,value,i,this)){
+                    res.push(value);
+                }
+            }
+        }
+        return res;
+    };
+    var sama = arr.filters(function (value,context) {
+        return value < 3;
+    })
+    console.log(sama);
+</script>
+</body>
+</html>
