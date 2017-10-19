@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="application/javascript">
+    var sama = [1,2,5,30,20,6,4];
+    var content = [10];
+//    if (sama.some(function (value) {
+//            return value > content;
+//    }))
+//        console.log("朕批准了");
+
+
+    Array.prototype.some1 = function (fn,context) {
+        var arr = [];
+        var context = arguments[1];
+        if (typeof fn !== "function"){
+            throw "输入正确函数！";
+        }
+        for (var i = 0; i < this.length; i++){
+            fn.call(context,this[i],this);
+            arr.push(this[i]);
+        }
+        return arr;
+    };
+    sama.some1(function (value) {
+        return value;
+    });
+    if (sama.some1(function (value) {
+            return value > content;
+        })){
+        console.log("朕批准了");
+    }
+</script>
+</body>
+</html>
