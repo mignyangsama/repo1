@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="application/javascript">
+    var array =[10,20,30,40,50];
+    delete array[1];
+    //原型本身的
+    // array.forEach(function (value,index,arr) {
+    //     console.log(value);
+    //     console.log(index);
+    //     console.log(arr);
+    // })
+    //衍生
+    function log(value,index,arr) {
+        // console.log(value,index,arr)
+    }
+    // for(var i=0;i<array.length;i++){
+    //     log(array[i],i,array)
+    // }
+
+    //实现
+    //添加原型
+    Array.prototype.myForeach =function (callback,thisArg) {
+        if(typeof callback !== 'function'){
+            throw new TypeError(callback +' is not a function');
+        }
+        for(var i=0;i<this.length;i++){
+            if(Object.prototype.hasOwnProperty.call(this,i)){
+                callback(this[i],i,this);
+            }
+
+        }
+    }
+    // array.myForeach(function (value,index,array) {
+    //
+    // })
+    // array.forEach(function (value,index,arr) {
+    //     console.log(value);
+    //     console.log(index);
+    //     console.log(arr);
+    // })
+    // array.forEach({name:'111'});
+    // array.myForeach(1);
+    array.forEach(function (value,index,arr) {
+        // console.log(value,index,arr)
+    })
+    console.log(Object.prototype.hasOwnProperty.call(array,5))
+</script>
+</body>
+</html>
