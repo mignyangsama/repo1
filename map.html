@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="application/javascript">
+//    var data = [1,2,3,4,5];
+//    var sama = data.forEach(function (item) {
+//        return item * item;
+//    })
+//    console.log(sama);
+
+//    [1,2,3,4,5].map(function (value) {
+//        console.log(value * 2);
+//    })
+
+Array.prototype.mymap =function (callback) {
+    if(typeof callback !== 'function'){
+        throw new TypeError(callback +' is not a function');
+    }
+    for(var i=0;i<this.length;i++){
+        if(Object.prototype.hasOwnProperty.call(this,i)){
+            callback(this[i],i,this);
+        }
+
+    }
+}
+
+var  arr = [1,2,5,4];
+arr.mymap(function (val,index,arr) {
+    console.log(val*2);
+})
+
+
+</script>
+</body>
+</html>
